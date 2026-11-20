@@ -1,1 +1,307 @@
-Ahoj, já jsem Martin! Sexy borec :)
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vertex Supercars – autosalon superaut Praha</title>
+<meta name="description" content="Autosalon superaut v Praze. Aktuální nabídka Ferrari, Lamborghini, McLaren, Porsche a dalších.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f5f7; --card:#fff; --ink:#101317; --muted:#5d6670; --line:#dde0e4;
+  --orange:#ff5a1f; --blue:#1d5fd1; --green:#18a058; --purple:#7b2cbf; --yellow:#f5c400;
+  --head:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow",Arial,Helvetica,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.55;font-size:17px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* Header */
+header{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.bar{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:var(--head);font-weight:700;font-size:26px;letter-spacing:.02em;text-decoration:none}
+.logo span{color:var(--orange)}
+nav a{margin-left:28px;text-decoration:none;font-weight:500;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+
+/* Hero */
+.hero{background:radial-gradient(900px 420px at 85% 30%,rgba(255,90,31,.38),transparent 70%),radial-gradient(700px 400px at 10% 100%,rgba(123,44,191,.35),transparent 70%),#0f1218;color:#fff}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:32px;align-items:center;padding-top:72px;padding-bottom:64px}
+.hero h1{font-family:var(--head);font-weight:700;font-size:clamp(48px,8vw,96px);line-height:.95;max-width:11ch}
+.hero p{margin-top:22px;max-width:44ch;font-size:20px;color:#c3cad3}
+.cta{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 26px;font-weight:600;text-decoration:none;border:2px solid var(--orange);border-radius:4px;background:var(--orange);color:#fff;cursor:pointer;font-family:inherit;font-size:16px}
+.btn:hover{background:#fff;border-color:#fff;color:var(--ink)}
+.btn.ghost{background:transparent;border-color:#fff}
+.btn.ghost:hover{background:#fff;color:var(--ink)}
+.hero-car svg{width:100%;height:auto;filter:drop-shadow(0 18px 30px rgba(0,0,0,.45))}
+.facts{display:flex;gap:48px;margin-top:48px;flex-wrap:wrap}
+.facts b{display:block;font-family:var(--head);font-size:42px;line-height:1}
+.facts div:nth-child(1) b{color:var(--orange)}
+.facts div:nth-child(2) b{color:#5aa2ff}
+.facts div:nth-child(3) b{color:#c58bff}
+.facts small{color:#aab2bd;font-size:15px}
+
+/* Sections */
+section{padding:72px 0}
+h2{font-family:var(--head);font-weight:700;font-size:clamp(34px,5vw,52px);line-height:1}
+.lead{color:var(--muted);margin-top:10px;max-width:52ch}
+
+/* Filter */
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin:32px 0 28px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:8px 18px;border:1px solid var(--line);background:var(--card);border-radius:999px;font:500 15px var(--body);cursor:pointer;color:var(--ink)}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--orange);color:#fff;border-color:var(--orange)}
+.sort{display:flex;align-items:center;gap:8px;font-size:15px;color:var(--muted)}
+.sort select{width:auto;margin:0;padding:8px 12px}
+
+/* Cars */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:24px}
+.car{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;border-bottom:4px solid var(--c)}
+.pic{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;padding:14px}
+.pic img{width:100%;height:100%;object-fit:cover;display:block;margin:-14px;max-width:none}
+.pic svg{width:100%;height:auto;filter:drop-shadow(0 8px 10px rgba(0,0,0,.25))}
+.info{padding:20px 22px 22px;display:flex;flex-direction:column;gap:14px;flex:1}
+.brand{color:var(--muted);font-size:14px;display:flex;align-items:center;gap:8px}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--c);border:1px solid rgba(0,0,0,.2);display:inline-block}
+.car h3{font-family:var(--head);font-weight:600;font-size:28px;line-height:1.1}
+.spec{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.spec b{display:block;font-weight:600}
+.spec small{color:var(--muted);font-size:13px}
+.buy{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+.price{font-family:var(--head);font-weight:700;font-size:26px}
+.buy a{font-weight:600;color:var(--blue);text-decoration:none}
+.buy a:hover{text-decoration:underline}
+.tag{font-size:12px;font-weight:600;color:#fff;background:var(--green);padding:1px 9px;border-radius:3px}
+.empty{padding:40px 0;color:var(--muted)}
+
+/* Services */
+.why{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:40px}
+.cols>div{padding:22px 22px 24px;background:var(--bg);border-top:5px solid var(--k);border-radius:4px}
+.cols h3{font-family:var(--head);font-size:26px;font-weight:600;margin-bottom:6px}
+.cols p{color:var(--muted)}
+
+/* Contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.contact dl{margin-top:28px;display:grid;grid-template-columns:110px 1fr;gap:12px 16px}
+.contact dt{color:var(--muted)}
+.contact dd{font-weight:500}
+label{display:block;font-weight:500;margin-bottom:6px;font-size:15px}
+input,textarea,select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:4px;font:inherit;background:var(--card);color:var(--ink);margin-bottom:16px}
+textarea{min-height:110px;resize:vertical}
+footer{padding:32px 0;color:var(--muted);font-size:15px;border-top:1px solid var(--line)}
+
+@media (max-width:820px){
+  .hero .wrap{grid-template-columns:1fr;padding-top:48px}
+  .contact{grid-template-columns:1fr;gap:40px}
+  nav a{margin-left:16px;font-size:15px}
+  section{padding:56px 0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top">VERTEX<span>.</span>SUPERCARS</a>
+    <nav aria-label="Hlavní navigace">
+      <a href="#nabidka">Nabídka</a>
+      <a href="#sluzby">Služby</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Superauta bez kompromisů.</h1>
+        <p>Pečlivě vybraná vozidla s ověřenou historií. Prohlídka, zkušební jízda i financování na jednom místě v Praze.</p>
+        <div class="cta">
+          <a class="btn" href="#nabidka">Zobrazit nabídku</a>
+          <a class="btn ghost" href="#kontakt">Domluvit prohlídku</a>
+        </div>
+        <div class="facts">
+          <div><b id="count">12</b><small>vozů ve skladu</small></div>
+          <div><b>100 %</b><small>ověřená historie</small></div>
+          <div><b>24 měs.</b><small>záruka na každé auto</small></div>
+        </div>
+      </div>
+      <div class="hero-car" id="heroCar"></div>
+    </div>
+  </div>
+
+  <section id="nabidka">
+    <div class="wrap">
+      <h2>Aktuální nabídka</h2>
+      <p class="lead">Vyberte značku nebo si prohlédněte všechna vozidla. Ceny jsou uvedeny včetně DPH.</p>
+      <div class="toolbar">
+        <div class="filters" id="filters" role="group" aria-label="Filtr značek"></div>
+        <label class="sort">Řadit:
+          <select id="sort">
+            <option value="">Výchozí</option>
+            <option value="price-asc">Cena od nejnižší</option>
+            <option value="price-desc">Cena od nejvyšší</option>
+            <option value="power">Nejvyšší výkon</option>
+            <option value="km">Nejnižší nájezd</option>
+          </select>
+        </label>
+      </div>
+      <div class="grid" id="grid" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="sluzby" class="why">
+    <div class="wrap">
+      <h2>Co u nás získáte</h2>
+      <div class="cols">
+        <div style="--k:var(--orange)"><h3>Ověřená historie</h3><p>Každé auto prochází nezávislou kontrolou původu, servisní knihy a nájezdu.</p></div>
+        <div style="--k:var(--blue)"><h3>Zkušební jízda</h3><p>Vyzkoušejte si vůz na silnici i na uzavřeném okruhu. Termín stačí domluvit předem.</p></div>
+        <div style="--k:var(--green)"><h3>Financování a výkup</h3><p>Pomůžeme s leasingem, úvěrem nebo výkupem vašeho současného vozu.</p></div>
+        <div style="--k:var(--purple)"><h3>Dovoz na přání</h3><p>Nenašli jste svůj vůz? Najdeme ho v Evropě a zajistíme dovoz včetně registrace.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <div class="wrap contact">
+      <div>
+        <h2>Kontakt</h2>
+        <p class="lead">Napište nám nebo se stavte v salonu. Odpovídáme do jednoho pracovního dne.</p>
+        <dl>
+          <dt>Adresa</dt><dd>Ukázková 12, 110 00 Praha 1</dd>
+          <dt>Telefon</dt><dd><a href="tel:+420123456789">+420 123 456 789</a></dd>
+          <dt>E-mail</dt><dd><a href="mailto:info@vertexsupercars.cz">info@vertexsupercars.cz</a></dd>
+          <dt>Otevřeno</dt><dd>Po–Pá 9–18, So 10–14</dd>
+        </dl>
+      </div>
+      <div>
+        <label for="f-name">Jméno</label>
+        <input id="f-name" autocomplete="name">
+        <label for="f-car">Vůz, který vás zajímá</label>
+        <select id="f-car"></select>
+        <label for="f-msg">Zpráva</label>
+        <textarea id="f-msg"></textarea>
+        <button class="btn" id="send" type="button">Odeslat e-mailem</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Vertex Supercars. Uvedené údaje a ceny jsou ilustrativní.</div>
+</footer>
+
+<script>
+/* ===== Nabídka vozů – upravujte jen tuto část =====
+   shape: "wedge" (středový motor), "coupe" (GT), "open" (kabriolet)
+   image: cesta k vlastní fotce, např. "img/ferrari-296.jpg" (prázdné = nakreslená ilustrace v barvě vozu) */
+const CARS = [
+  {brand:"Ferrari",      name:"296 GTB",            shape:"wedge", color:"#d8141f", colorName:"Rosso Corsa",   year:2023, km:4200,  power:830, accel:2.9, price:7990000, image:"", tag:"Novinka"},
+  {brand:"Lamborghini",  name:"Huracán Tecnica",    shape:"wedge", color:"#7ac10f", colorName:"Verde Mantis",  year:2022, km:8900,  power:640, accel:3.2, price:6450000, image:""},
+  {brand:"McLaren",      name:"750S",               shape:"wedge", color:"#ff7a00", colorName:"Papaya Spark",  year:2024, km:1500,  power:750, accel:2.8, price:8200000, image:"", tag:"Novinka"},
+  {brand:"Porsche",      name:"911 GT3 RS",         shape:"coupe", color:"#f5c400", colorName:"Racing Yellow", year:2023, km:3100,  power:525, accel:3.2, price:7150000, image:""},
+  {brand:"Aston Martin", name:"Vantage",            shape:"coupe", color:"#1d5fd1", colorName:"Cobalt Blue",   year:2022, km:11800, power:665, accel:3.5, price:4790000, image:""},
+  {brand:"Mercedes-AMG", name:"GT Black Series",    shape:"coupe", color:"#8a929c", colorName:"Magnetit",      year:2021, km:6400,  power:730, accel:3.2, price:9300000, image:""},
+  {brand:"Ferrari",      name:"Roma",               shape:"coupe", color:"#1e3fa0", colorName:"Blu Tour",      year:2022, km:9700,  power:620, accel:3.4, price:5390000, image:""},
+  {brand:"Lamborghini",  name:"Revuelto",           shape:"wedge", color:"#7b2cbf", colorName:"Viola Pasifae", year:2024, km:900,   power:1015,accel:2.5, price:16900000,image:"", tag:"Novinka"},
+  {brand:"McLaren",      name:"Artura",             shape:"wedge", color:"#0fa3a3", colorName:"Seigaiha Blue", year:2023, km:5300,  power:680, accel:3.0, price:6100000, image:""},
+  {brand:"Porsche",      name:"911 Turbo S Cabrio", shape:"open",  color:"#3b4350", colorName:"Gunmetal",      year:2023, km:7200,  power:650, accel:2.7, price:7390000, image:""},
+  {brand:"Aston Martin", name:"DB12 Volante",       shape:"open",  color:"#0f6b45", colorName:"British Racing Green", year:2024, km:2100, power:680, accel:3.6, price:7950000, image:""},
+  {brand:"Audi",         name:"R8 V10 Performance", shape:"wedge", color:"#d1006f", colorName:"Magenta",       year:2022, km:12400, power:620, accel:3.1, price:3990000, image:""}
+];
+
+const SHAPES = {
+  wedge:{body:"M20 78 L28 66 L78 58 L118 38 Q150 30 185 38 L222 56 L268 62 Q284 66 286 78 L286 86 L20 86 Z", win:"M124 42 Q150 36 180 42 L206 56 L114 56 Z"},
+  coupe:{body:"M16 80 L22 68 Q40 62 78 58 L120 40 Q150 32 190 38 L226 58 L272 64 Q288 68 288 80 L288 86 L16 86 Z", win:"M126 44 Q152 38 184 44 L204 58 L116 58 Z"},
+  open: {body:"M16 80 L24 68 L96 60 L120 50 L168 50 L196 60 L270 64 Q288 68 288 80 L288 86 L16 86 Z", win:"M124 52 L166 52 L180 60 L114 60 Z"}
+};
+
+function mix(hex,t,to){
+  const n=parseInt(hex.slice(1),16), f=v=>Math.round(v+(to-v)*t);
+  return `rgb(${f(n>>16)},${f(n>>8&255)},${f(n&255)})`;
+}
+function wheel(x){
+  return `<circle cx="${x}" cy="80" r="19" fill="#0c0e11"/><circle cx="${x}" cy="80" r="16" fill="#1a1d21"/><circle cx="${x}" cy="80" r="9" fill="#cfd4da"/><circle cx="${x}" cy="80" r="3" fill="#5a626b"/>`;
+}
+function carSvg(c,id){
+  const s = SHAPES[c.shape] || SHAPES.coupe;
+  return `<svg viewBox="0 0 300 120" role="img" aria-label="${c.brand} ${c.name}, ${c.colorName}">
+    <defs><linearGradient id="g${id}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="${mix(c.color,.3,255)}"/><stop offset=".55" stop-color="${c.color}"/><stop offset="1" stop-color="${mix(c.color,.4,0)}"/>
+    </linearGradient></defs>
+    <ellipse cx="152" cy="108" rx="128" ry="6" fill="rgba(0,0,0,.25)"/>
+    <g transform="translate(0,12)">
+      <path d="${s.body}" fill="url(#g${id})"/>
+      <path d="${s.win}" fill="rgba(16,19,23,.85)"/>
+      <path d="M26 72 L278 72" stroke="rgba(255,255,255,.4)" stroke-width="1.5" fill="none"/>
+      <path d="M268 66 L284 70" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+      ${wheel(78)}${wheel(228)}
+    </g></svg>`;
+}
+
+const nf = new Intl.NumberFormat("cs-CZ");
+const grid = document.getElementById("grid");
+const filters = document.getElementById("filters");
+const select = document.getElementById("f-car");
+let active = "Vše", sortBy = "";
+
+function render(){
+  let list = CARS.map((c,i)=>({...c,i})).filter(c => active === "Vše" || c.brand === active);
+  const sorts = {"price-asc":(a,b)=>a.price-b.price,"price-desc":(a,b)=>b.price-a.price,"power":(a,b)=>b.power-a.power,"km":(a,b)=>a.km-b.km};
+  if(sorts[sortBy]) list.sort(sorts[sortBy]);
+  grid.innerHTML = list.length ? list.map(c => `
+    <article class="car" style="--c:${c.color}">
+      <div class="pic" style="background:linear-gradient(135deg,${mix(c.color,.9,255)},${mix(c.color,.68,255)})">
+        ${c.image ? `<img src="${c.image}" alt="${c.brand} ${c.name}" loading="lazy">` : carSvg(c,c.i)}
+      </div>
+      <div class="info">
+        <div>
+          <div class="brand"><span class="dot"></span>${c.brand} · ${c.colorName}${c.tag ? ` <span class="tag">${c.tag}</span>` : ""}</div>
+          <h3>${c.name}</h3>
+        </div>
+        <div class="spec">
+          <div><b>${c.power} k</b><small>výkon</small></div>
+          <div><b>${String(c.accel).replace(".",",")} s</b><small>0–100 km/h</small></div>
+          <div><b>${nf.format(c.km)} km</b><small>rok ${c.year}</small></div>
+        </div>
+        <div class="buy"><span class="price">${nf.format(c.price)} Kč</span><a href="#kontakt" data-car="${c.brand} ${c.name}">Mám zájem</a></div>
+      </div>
+    </article>`).join("") : '<p class="empty">V této značce teď nic nemáme. Napište nám, vůz pro vás najdeme.</p>';
+}
+
+function renderFilters(){
+  const brands = ["Vše", ...new Set(CARS.map(c => c.brand))];
+  filters.innerHTML = brands.map(b => `<button class="chip" type="button" aria-pressed="${b===active}" data-b="${b}">${b}</button>`).join("");
+}
+
+filters.addEventListener("click", e => { const b = e.target.dataset.b; if(!b) return; active = b; renderFilters(); render(); });
+document.getElementById("sort").addEventListener("change", e => { sortBy = e.target.value; render(); });
+grid.addEventListener("click", e => { const car = e.target.dataset.car; if(car) select.value = car; });
+
+select.innerHTML = '<option value="">Nevím, poradte mi</option>' + CARS.map(c => `<option>${c.brand} ${c.name}</option>`).join("");
+document.getElementById("count").textContent = CARS.length;
+document.getElementById("heroCar").innerHTML = carSvg(CARS[0],"h");
+
+document.getElementById("send").addEventListener("click", () => {
+  const name = document.getElementById("f-name").value;
+  const car = select.value || "bez konkrétního vozu";
+  const msg = document.getElementById("f-msg").value;
+  location.href = "mailto:info@vertexsupercars.cz?subject=" + encodeURIComponent("Poptávka: " + car) +
+    "&body=" + encodeURIComponent(`Jméno: ${name}\nVůz: ${car}\n\n${msg}`);
+});
+
+renderFilters(); render();
+</script>
+</body>
+</html>
